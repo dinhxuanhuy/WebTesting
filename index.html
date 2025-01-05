@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>gsplat.js - PLY Converter</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+      }
+
+      #canvas {
+        border: 1px solid #ccc;
+        width: 90%;
+        height: 70%;
+      }
+
+      #progress-container {
+        position: fixed;
+        top: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      dialog {
+        background: #fff;
+        padding: 1em;
+        border-radius: 8px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      progress {
+        width: 100%;
+        margin-top: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="progress-container">
+      <dialog id="progress-dialog" open>
+        <p>
+          <label for="progress-indicator">Drag a ply file...</label>
+        </p>
+        <progress id="progress-indicator" max="100"></progress>
+      </dialog>
+    </div>
+
+    <canvas id="canvas"></canvas>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
