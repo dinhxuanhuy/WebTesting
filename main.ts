@@ -1,7 +1,6 @@
 import * as SPLAT from "gsplat";
 
 const canvas = document.getElementById("canvas") as HTMLCanvasElement;
-const progressDialog = document.getElementById("progress-dialog") as HTMLDialogElement;
 const progressIndicator = document.getElementById("progress-indicator") as HTMLProgressElement;
 
 const renderer = new SPLAT.WebGLRenderer(canvas);

@@ -31,14 +31,7 @@ dialog {
     position: relative;
     transform: translate(-50%, -50%);
 }
-#progress-dialog label {
-    font-size: 16px;
-    color: #333; /* Thay đổi màu chữ */
-    font-weight: bold; /* In đậm */
-    margin-bottom: 10px; /* Khoảng cách với thanh tiến trình */
-    display: block;
-  }
-      
+
 
 #progress-container {
     position: absolute;
