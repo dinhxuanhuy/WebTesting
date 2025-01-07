@@ -2,6 +2,7 @@ import * as SPLAT from "gsplat";
 
 const canvas = document.getElementById("canvas") as HTMLCanvasElement;
 const progressIndicator = document.getElementById("progress-indicator") as HTMLProgressElement;
+const progressLabel = document.getElementById("TextLabel") as HTMLLabelElement;
 
 const renderer = new SPLAT.WebGLRenderer(canvas);
 const scene = new SPLAT.Scene();
@@ -10,7 +11,6 @@ const controls = new SPLAT.OrbitControls(camera, canvas);
 
 const format = "";
 // const format = "polycam"; // Uncomment to use polycam format
-
 async function main() {
     const frame = () => {
         controls.update();
@@ -38,6 +38,7 @@ async function main() {
             );
         }
         loading = false;
+        progressLabel.textContent = "You can drag another file";
     };
 
     document.addEventListener("drop", (e) => {

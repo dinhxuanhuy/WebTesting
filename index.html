@@ -8,19 +8,25 @@
     <style>
       body {
         margin: 0;
-        font-family: Arial, sans-serif;
+        font-family: "Roboto", sans-serif;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         height: 100vh;
-        background-color: #f0f0f0;
+        background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
       }
 
       #canvas {
         border: 1px solid #ccc;
         width: 90%;
         height: 70%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+
+      #canvas:hover {
+        transform: scale(1.02);
       }
 
       #progress-container {
@@ -28,6 +34,11 @@
         top: 10%;
         left: 50%;
         transform: translateX(-50%);
+        background: rgba(255, 255, 255, 0.9);
+        padding: 1em;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: opacity 0.3s ease;
       }
 
       dialog {
@@ -41,16 +52,26 @@
         width: 100%;
         margin-top: 1em;
       }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      #progress-container {
+        animation: fadeIn 1s ease-in-out;
+      }
     </style>
   </head>
   <body>
     <div id="progress-container">
-      <dialog id="progress-dialog" open>
-        <p>
-          <label for="progress-indicator">Drag a ply file...</label>
-        </p>
-        <progress id="progress-indicator" max="100"></progress>
-      </dialog>
+      <p>
+        <label>Drag a ply file...</label>
+      </p>
     </div>
 
     <canvas id="canvas"></canvas>
