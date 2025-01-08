@@ -8,9 +8,9 @@ const renderer = new SPLAT.WebGLRenderer(canvas);
 const scene = new SPLAT.Scene();
 const camera = new SPLAT.Camera();
 const controls = new SPLAT.OrbitControls(camera, canvas);
+// increase controls speed when zoom in out
 
 const format = "";
-// const format = "polycam"; // Uncomment to use polycam format
 async function main() {
     const frame = () => {
         controls.update();
@@ -24,9 +24,7 @@ async function main() {
         if (loading) return;
         loading = true;
         if (file.name.endsWith(".splat")) {
-            await SPLAT.Loader.LoadFromFileAsync(file, scene, (progress: number) => {
-                progressIndicator.value = progress * 100;
-            });
+            await SPLAT.Loader.LoadFromFileAsync(file, scene);
         } else if (file.name.endsWith(".ply")) {
             await SPLAT.PLYLoader.LoadFromFileAsync(
                 file,
@@ -55,3 +53,4 @@ async function main() {
 }
 
 main();
+//roate the camera using the up down left right arrow
