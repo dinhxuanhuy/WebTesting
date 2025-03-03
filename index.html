@@ -3,11 +3,125 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>gsplat.js - PLY Converter</title>
+    <title>gsplat.js - 3D Model Viewer</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <canvas id="canvas"></canvas>
-    <script type="module" src="main.ts"></script>
+    <div class="container">
+      <div class="tabs" role="tablist">
+        <button
+          class="tab-button active"
+          role="tab"
+          aria-selected="true"
+          aria-controls="upload-video"
+          onclick="openTab('upload-video')"
+        >
+          Upload Video
+        </button>
+        <button
+          class="tab-button"
+          role="tab"
+          aria-selected="false"
+          aria-controls="upload-ply"
+          onclick="openTab('upload-ply')"
+        >
+          Upload PLY
+        </button>
+      </div>
+
+      <div
+        id="upload-video"
+        class="tab-content active"
+        role="tabpanel"
+        aria-labelledby="upload-video-tab"
+      >
+        <div class="controls">
+          <input
+            type="file"
+            id="video-upload"
+            accept="video/*"
+            class="file-input"
+            aria-label="Upload video file"
+          />
+          <button id="reconstruct" class="action-button">Reconstruct</button>
+        </div>
+      </div>
+
+      <div
+        id="upload-ply"
+        class="tab-content"
+        role="tabpanel"
+        aria-labelledby="upload-ply-tab"
+      >
+        <div class="controls">
+          <input
+            type="file"
+            id="ply-upload"
+            accept=".ply,.splat"
+            class="file-input"
+            aria-label="Upload PLY or Splat file"
+          />
+          <button id="view-ply" class="action-button">View</button>
+          <button id="selectFromLinkButton" class="action-button">
+            Fetch File List
+          </button>
+          <div id="fileListContainer" style="display: none">
+            <label for="fileList">Select a file:</label>
+            <select id="fileList"></select>
+            <button id="loadSelectedFile" class="action-button">
+              Load Selected File
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <canvas id="canvas" aria-label="3D model viewer"></canvas>
+      <progress
+        id="progress-indicator"
+        value="0"
+        max="100"
+        aria-label="Loading progress"
+      ></progress>
+      <label id="TextLabel" class="label"
+        >Drag a .ply or .splat file here, or use the tabs above</label
+      >
+    </div>
+
+    <script type="module" src="main.js"></script>
+    <script>
+      function openTab(tabName) {
+        const tabContents = document.getElementsByClassName("tab-content");
+        for (let i = 0; i < tabContents.length; i++) {
+          tabContents[i].classList.remove("active");
+        }
+        const tabButtons = document.getElementsByClassName("tab-button");
+        for (let i = 0; i < tabButtons.length; i++) {
+          tabButtons[i].classList.remove("active");
+        }
+        document.getElementById(tabName).classList.add("active");
+        document
+          .querySelector(`button[onclick="openTab('${tabName}')"]`)
+          .classList.add("active");
+      }
+
+      function hideTabs() {
+        document.querySelector(".tabs").style.display = "none";
+      }
+
+      function showTabs() {
+        document.querySelector(".tabs").style.display = "flex";
+      }
+
+      document.getElementById("view-ply").addEventListener("click", hideTabs);
+      document
+        .getElementById("reconstruct")
+        .addEventListener("click", hideTabs);
+
+      window.addEventListener("scroll", function () {
+        if (window.scrollY === 0) {
+          showTabs();
+        }
+      });
+    </script>
   </body>
 </html>
