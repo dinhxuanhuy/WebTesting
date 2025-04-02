@@ -134,10 +134,7 @@
         tabs.style.opacity = "1";
       }
 
-      document.getElementById("view-ply").addEventListener("click", hideTabs);
-      document
-        .getElementById("reconstruct")
-        .addEventListener("click", hideTabs);
+      // Keep tabs visible during model loading
 
       window.addEventListener("scroll", function () {
         if (window.scrollY === 0) {
@@ -173,15 +170,13 @@
       }
 
       // Update existing event listeners
-      document.getElementById("view-ply").addEventListener("click", () => {
-        hideTabs();
-        showFullscreenButton();
-      });
-
-      document.getElementById("reconstruct").addEventListener("click", () => {
-        hideTabs();
-        showFullscreenButton();
-      });
+      // Show fullscreen button when needed
+      document
+        .getElementById("view-ply")
+        .addEventListener("click", showFullscreenButton);
+      document
+        .getElementById("reconstruct")
+        .addEventListener("click", showFullscreenButton);
     </script>
   </body>
 </html>
